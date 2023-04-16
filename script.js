@@ -25,7 +25,7 @@ let allMusic = [
     name: "Mặt Mộc",
     artist: "Phạm Ngọc Nguyên ft VAnh",
     img: "img/music/mat_moc.jpg",
-    src: "./music/Mặt mộc.mp3",
+    src: "./music/mat_moc.mp3",
     idMusic: "song4",
   },
   {
