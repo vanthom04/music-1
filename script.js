@@ -86,24 +86,26 @@ let allMusic = [
   // },
 ];
 
-const wrapper = document.querySelector(".wrapper");
-const musicPlayer = wrapper.querySelector(".music-player");
-const cd = wrapper.querySelector(".cd");
-const cdThumb = wrapper.querySelector(".cd-thumb");
-const musicName = wrapper.querySelector("header h2");
-const musicArtist = wrapper.querySelector("header h3");
-const progress = wrapper.querySelector(".progress");
-const progressbar = wrapper.querySelector(".progress-bar");
-const playBtn = wrapper.querySelector("#btn-play");
-const prevBtn = wrapper.querySelector("#btn-prev");
-const nextBtn = wrapper.querySelector("#btn-next");
-const playbackTime = wrapper.querySelector("#btn-playback-time");
-const playlist = wrapper.querySelector(".playlist");
+const cd = document.querySelector(".cd");
+const cdThumb = document.querySelector(".cd-thumb");
+const musicName = document.querySelector("header h2");
+const musicArtist = document.querySelector("header h3");
+const progress = document.querySelector(".progress");
+const progressbar = document.querySelector(".progress-bar");
+const playBtn = document.querySelector("#btn-play");
+const prevBtn = document.querySelector("#btn-prev");
+const nextBtn = document.querySelector("#btn-next");
+const randomBtn = document.querySelector("#btn-random");
+const playbackTimeBtn = document.querySelector("#btn-playback-time");
+const playlist = document.querySelector(".playlist");
 
 let musicIndex = 0;
 let autoplay = 0;
 let timer = 0;
 let play_song = false;
+let isRandom = false;
+let isRepeat = false;
+let isPlaybackTime = false;
 let songAudio = document.createElement("audio");
 
 window.addEventListener("load", () => {
@@ -113,7 +115,7 @@ window.addEventListener("load", () => {
 
 function loadMusic(index) {
   reset_music();
-  autoplay_song();
+  autoPlaySong();
   musicName.innerText = allMusic[index].name;
   musicArtist.innerText = allMusic[index].artist;
   cdThumb.style.backgroundImage = `url(${allMusic[index].img})`;
@@ -163,7 +165,6 @@ function pausesong() {
   play_song = false;
   playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
 }
-// Xử lý phóng to / thu nhỏ CD
 
 // --------- Next Music ----------
 function nextMusic() {
@@ -185,22 +186,42 @@ function prevMusic() {
     musicIndex--;
     loadMusic(musicIndex);
     playsong();
+    playLiMusic();
   } else {
     musicIndex = allMusic.length - 1;
     loadMusic(musicIndex);
     playsong();
+    playLiMusic();
   }
 }
-nextBtn.addEventListener("click", () => {
-  nextMusic();
-});
+nextBtn.onclick = function () {
+  if (isRandom) {
+    playRandomSong();
+    nextMusic();
+  } else {
+    nextMusic();
+  }
+};
 
-prevBtn.addEventListener("click", () => {
-  prevMusic();
-});
+prevBtn.onclick = function () {
+  if (isRandom) {
+    playRandomSong();
+    prevMusic();
+  } else {
+    prevMusic();
+  }
+};
 
 // -------- Tự chuyển bài ----------
-function autoplay_song() {
+// songAudio.onended = function () {
+//   if (isRepeat) {
+//     songAudio.play();
+//   } else {
+//     nextBtn.click();
+//   }
+// };
+
+function autoPlaySong() {
   if (autoplay == 1) {
     autoplay = 1;
   } else {
@@ -211,6 +232,12 @@ function autoplay_song() {
 function range_slider() {
   if (songAudio.ended) {
     playBtn.innerHTML = `<i class="fa-solid fa-play"></i>`;
+    if (autoplay == 1 && isRandom) {
+      playRandomSong();
+      nextMusic();
+      loadMusic(musicIndex);
+      playsong();
+    }
     if (autoplay == 1) {
       nextMusic();
       loadMusic(musicIndex);
@@ -219,43 +246,23 @@ function range_slider() {
   }
 }
 // -------- Random Music --------
-const randomBtn = document.getElementById("btn-random");
-let isRandom = false;
 
-randomBtn.addEventListener("click", function () {
-  if (!isRandom) {
-    isRandom = true;
-    randomBtn.style.color = "#ff74a4";
-    randomSong();
-  } else {
-    isRandom = false;
-    randomBtn.style.color = "#000000";
-  }
-});
+randomBtn.onclick = function (e) {
+  isRandom = !isRandom;
+  randomBtn.classList.toggle("pink", isRandom);
+};
 
-function randomSong() {
+function playRandomSong() {
   let newMusicIndex;
   do {
     newMusicIndex = Math.floor(Math.random() * allMusic.length);
   } while (newMusicIndex === musicIndex);
   musicIndex = newMusicIndex;
-  while (songAudio.ended) {
-    if (songAudio.ended) {
-      if (autoplay == 1) {
-        nextMusic();
-        loadMusic(musicIndex);
-        playsong();
-      }
-    }
-  }
 }
 
 // --------Repeat Music----------
 
 // -------- Playback time --------
-playbackTime.addEventListener("click", function (e) {
-  playbackTime.classList.toggle("pink");
-});
 
 // ------------- Update progress -------
 songAudio.addEventListener("timeupdate", (e) => {
@@ -264,8 +271,8 @@ songAudio.addEventListener("timeupdate", (e) => {
   let progressWidth = (currentTime / duration) * 100;
   progressbar.style.width = `${progressWidth}%`;
 
-  let musicCurrentTime = wrapper.querySelector(".current");
-  let musicDuration = wrapper.querySelector(".duration");
+  let musicCurrentTime = document.querySelector(".current");
+  let musicDuration = document.querySelector(".duration");
   songAudio.addEventListener("loadeddata", () => {
     let audioduration = songAudio.duration;
     let totalMusicmin = Math.floor(audioduration / 60);
@@ -298,10 +305,10 @@ function reset_music() {
 }
 
 // -------- Playlist---------
-const ulMusic = wrapper.querySelector("ul");
+const ulMusic = document.querySelector("ul");
 
 for (let i = 0; i < allMusic.length; i++) {
-  let liMusic = `<li Musicindex="${i}">
+  let song = `<div class="song" Musicindex="${i}">
                 <div class="left">
                   <div
                     class="img-song"
@@ -315,28 +322,28 @@ for (let i = 0; i < allMusic.length; i++) {
                 <div class="option">
                   <i class="fas fa-ellipsis-h"></i>
                 </div>
-              </li>`;
-  ulMusic.insertAdjacentHTML("beforeend", liMusic);
+              </div>`;
+  playlist.insertAdjacentHTML("beforeend", song);
 }
 
 // -----------------------------------------------
-const allLiMusic = ulMusic.querySelectorAll("li ");
+const allSongMusic = playlist.querySelectorAll(".song ");
 
 function playLiMusic() {
-  for (let j = 0; j < allLiMusic.length; j++) {
-    if (allLiMusic[j].classList.contains("active")) {
-      allLiMusic[j].classList.remove("active");
+  for (let j = 0; j < allSongMusic.length; j++) {
+    if (allSongMusic[j].classList.contains("active")) {
+      allSongMusic[j].classList.remove("active");
     }
-    if (allLiMusic[j].getAttribute("Musicindex") == musicIndex) {
-      allLiMusic[j].classList.add("active");
+    if (allSongMusic[j].getAttribute("Musicindex") == musicIndex) {
+      allSongMusic[j].classList.add("active");
     }
-    allLiMusic[j].setAttribute("onclick", "clicked(this)");
+    allSongMusic[j].setAttribute("onclick", "clicked(this)");
   }
 }
 
 function clicked(index) {
-  let getLiIndex = index.getAttribute("Musicindex");
-  musicIndex = getLiIndex;
+  let getSongIndex = index.getAttribute("Musicindex");
+  musicIndex = getSongIndex;
   loadMusic(musicIndex);
   playsong();
   playLiMusic();
