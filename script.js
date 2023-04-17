@@ -43,8 +43,8 @@ let allMusic = [
     idMusic: "song6",
   },
   {
-    name: "Hai Mươi Hai",
-    artist: "Amee x Hứa Kim Tuyền「Cukak Remix」",
+    name: "Hai Mươi Hai「Cukak Remix」",
+    artist: "Amee x Hứa Kim Tuyền",
     img: "img/music/22.jpg",
     src: "./music/22.mp3",
     idMusic: "song7",
@@ -89,14 +89,11 @@ let allMusic = [
 const wrapper = document.querySelector(".wrapper");
 const musicPlayer = wrapper.querySelector(".music-player");
 const cd = wrapper.querySelector(".cd");
-const cdAnimation = wrapper.querySelector(".cd-thumb");
-const cdThumb = wrapper.querySelector(".cd-thumb img");
+const cdThumb = wrapper.querySelector(".cd-thumb");
 const musicName = wrapper.querySelector("header h2");
 const musicArtist = wrapper.querySelector("header h3");
 const progress = wrapper.querySelector(".progress");
 const progressbar = wrapper.querySelector(".progress-bar");
-const randomBtn = wrapper.querySelector("#btn-random");
-// const repeatBtn = wrapper.querySelector("#btn-repeat");
 const playBtn = wrapper.querySelector("#btn-play");
 const prevBtn = wrapper.querySelector("#btn-prev");
 const nextBtn = wrapper.querySelector("#btn-next");
@@ -119,7 +116,7 @@ function loadMusic(index) {
   autoplay_song();
   musicName.innerText = allMusic[index].name;
   musicArtist.innerText = allMusic[index].artist;
-  cdThumb.src = allMusic[index].img;
+  cdThumb.style.backgroundImage = `url(${allMusic[index].img})`;
   songAudio.src = allMusic[index].src;
   songAudio.load();
 
@@ -127,7 +124,25 @@ function loadMusic(index) {
 }
 loadMusic(musicIndex);
 
-// Play music
+// Phóng to / Thu nhỏ CD
+const cdWidth = cd.offsetWidth;
+
+document.onscroll = function () {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const newCdWidth = cdWidth - scrollTop;
+
+  cd.style.width = newCdWidth > 0 ? newCdWidth + "px" : 0;
+  cd.style.opacity = newCdWidth / cdWidth;
+};
+
+// Xử lý CD quay / dừng
+const cdThumbAnimation = cdThumb.animate([{ transform: "rotate(360deg)" }], {
+  duration: 10000,
+  iterations: Infinity,
+});
+cdThumbAnimation.pause();
+
+// Play Music
 function musicPlay() {
   if (play_song == false) {
     playsong();
@@ -137,37 +152,18 @@ function musicPlay() {
 }
 function playsong() {
   songAudio.play();
+  cdThumbAnimation.play();
   play_song = true;
-  cdAnimation.classList.add("animation-cd");
   playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
 }
 
 function pausesong() {
   songAudio.pause();
+  cdThumbAnimation.pause();
   play_song = false;
-  cdAnimation.classList.remove("animation-cd");
   playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
 }
 // Xử lý phóng to / thu nhỏ CD
-
-// -------- Random Music --------
-randomBtn.addEventListener("click", function (event) {
-  event.currentTarget.classList.toggle("pink");
-});
-
-// // --------Repeat Music----------
-// repeatBtn.addEventListener("click", function () {
-//   repeatBtn.classList.add("pink");
-// });
-
-// repeatBtn.addEventListener("click", function () {
-//   repeatBtn.classList.remove("pink");
-// });
-
-// -------- Playback time --------
-playbackTime.addEventListener("click", function (event) {
-  event.currentTarget.classList.toggle("pink");
-});
 
 // --------- Next Music ----------
 function nextMusic() {
@@ -222,6 +218,45 @@ function range_slider() {
     }
   }
 }
+// -------- Random Music --------
+const randomBtn = document.getElementById("btn-random");
+let isRandom = false;
+
+randomBtn.addEventListener("click", function () {
+  if (!isRandom) {
+    isRandom = true;
+    randomBtn.style.color = "#ff74a4";
+    randomSong();
+  } else {
+    isRandom = false;
+    randomBtn.style.color = "#000000";
+  }
+});
+
+function randomSong() {
+  let newMusicIndex;
+  do {
+    newMusicIndex = Math.floor(Math.random() * allMusic.length);
+  } while (newMusicIndex === musicIndex);
+  musicIndex = newMusicIndex;
+  while (songAudio.ended) {
+    if (songAudio.ended) {
+      if (autoplay == 1) {
+        nextMusic();
+        loadMusic(musicIndex);
+        playsong();
+      }
+    }
+  }
+}
+
+// --------Repeat Music----------
+
+// -------- Playback time --------
+playbackTime.addEventListener("click", function (e) {
+  playbackTime.classList.toggle("pink");
+});
+
 // ------------- Update progress -------
 songAudio.addEventListener("timeupdate", (e) => {
   const currentTime = e.target.currentTime;
@@ -285,8 +320,8 @@ for (let i = 0; i < allMusic.length; i++) {
 }
 
 // -----------------------------------------------
+const allLiMusic = ulMusic.querySelectorAll("li ");
 
-const allLiMusic = ulMusic.querySelectorAll("li");
 function playLiMusic() {
   for (let j = 0; j < allLiMusic.length; j++) {
     if (allLiMusic[j].classList.contains("active")) {
