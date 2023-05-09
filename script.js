@@ -86,45 +86,97 @@ let allMusic = [
   // },
 ];
 
+const playlist = document.querySelector(".playlist");
 const cd = document.querySelector(".cd");
 const cdThumb = document.querySelector(".cd-thumb");
 const musicName = document.querySelector("header h2");
 const musicArtist = document.querySelector("header h3");
 const progress = document.querySelector(".progress");
 const progressbar = document.querySelector(".progress-bar");
-const playBtn = document.querySelector("#btn-play");
+const randomBtn = document.querySelector("#btn-random");
 const prevBtn = document.querySelector("#btn-prev");
 const nextBtn = document.querySelector("#btn-next");
-const randomBtn = document.querySelector("#btn-random");
+const playBtn = document.querySelector("#btn-play");
 const playbackTimeBtn = document.querySelector("#btn-playback-time");
-const playlist = document.querySelector(".playlist");
+const songAudio = document.createElement("audio");
 
-let musicIndex = 0;
-let autoplay = 0;
-let timer = 0;
-let play_song = false;
+let currentIndex = 0;
+let isPlaying = false;
 let isRandom = false;
 let isRepeat = false;
 let isPlaybackTime = false;
-let songAudio = document.createElement("audio");
+let stopMusic = null;
+let stopTime = 3600000;
 
 window.addEventListener("load", () => {
-  loadMusic(musicIndex);
+  loadMusic(currentIndex);
   playSongMusic();
 });
 
+// Xử lý khi click vào playlist
+for (let i = 0; i < allMusic.length; i++) {
+  let song = `<div class="song" musicIndex="${i}">
+                <div class="left">
+                  <div
+                    class="img-song"
+                    style="background-image: url('${allMusic[i].img}')">
+                  </div>
+                  <div class="song-title">
+                    <h3 class="name">${allMusic[i].name}</h3>
+                    <p class="artist">${allMusic[i].artist}</p>
+                  </div>
+                </div>
+                <audio class="${allMusic[i].idMusic}" src="${allMusic[i].src}">
+                </audio>
+                <div id="${allMusic[i].idMusic}" class="audio-duration">
+                  <i class="fas fa-ellipsis-h"></i>
+                </div>
+                </div>`;
+  playlist.insertAdjacentHTML("beforeend", song);
+  let songAudioDuration = document.querySelector(`#${allMusic[i].idMusic}`);
+  let songAudioTag = document.querySelector(`.${allMusic[i].idMusic}`);
+  // -------hiển thị thời gian bài hát------------
+  songAudioTag.addEventListener("loadeddata", () => {
+    let audioDuration = songAudioTag.duration;
+    let totalMusicmin = Math.floor(audioDuration / 60);
+    let totalMusicsec = Math.floor(audioDuration % 60);
+    if (totalMusicsec < 10) {
+      totalMusicsec = `0${totalMusicsec}`;
+    }
+    songAudioDuration.innerText = `${totalMusicmin}:${totalMusicsec}`;
+  });
+}
+//
+const allSongMusic = playlist.querySelectorAll(".song");
+
+function playSongMusic() {
+  for (let j = 0; j < allSongMusic.length; j++) {
+    if (allSongMusic[j].classList.contains("active")) {
+      allSongMusic[j].classList.remove("active");
+    }
+    if (allSongMusic[j].getAttribute("musicIndex") == currentIndex) {
+      allSongMusic[j].classList.add("active");
+    }
+    allSongMusic[j].setAttribute("onclick", "clicked(this)");
+  }
+}
+
+function clicked(index) {
+  let getSongIndex = index.getAttribute("musicindex");
+  currentIndex = getSongIndex;
+  loadMusic(currentIndex);
+  playSong();
+  playSongMusic();
+}
+// Load Music
 function loadMusic(index) {
-  reset_music();
-  autoPlaySong();
   musicName.innerText = allMusic[index].name;
   musicArtist.innerText = allMusic[index].artist;
   cdThumb.style.backgroundImage = `url(${allMusic[index].img})`;
   songAudio.src = allMusic[index].src;
   songAudio.load();
-
-  timer = setInterval(range_slider, 1000);
 }
-loadMusic(musicIndex);
+loadMusic(currentIndex);
 
 // Phóng to / Thu nhỏ CD
 const cdWidth = cd.offsetWidth;
@@ -144,126 +196,131 @@ const cdThumbAnimation = cdThumb.animate([{ transform: "rotate(360deg)" }], {
 });
 cdThumbAnimation.pause();
 
-// Play Music
+// Play song
 function musicPlay() {
-  if (play_song == false) {
-    playsong();
+  if (isPlaying) {
+    pauseSong();
   } else {
-    pausesong();
+    playSong();
   }
 }
-function playsong() {
+function playSong() {
   songAudio.play();
   cdThumbAnimation.play();
-  play_song = true;
+  isPlaying = true;
   playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
 }
 
-function pausesong() {
+function pauseSong() {
   songAudio.pause();
   cdThumbAnimation.pause();
-  play_song = false;
+  isPlaying = false;
   playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
 }
 
-// --------- Next Music ----------
-function nextMusic() {
-  if (musicIndex < allMusic.length - 1) {
-    musicIndex++;
-    loadMusic(musicIndex);
-    playsong();
+// Next song
+function nextSong() {
+  if (currentIndex < allMusic.length - 1) {
+    currentIndex++;
+    loadMusic(currentIndex);
     playSongMusic();
+    playSong();
   } else {
-    musicIndex = 0;
-    loadMusic(musicIndex);
-    playsong();
+    currentIndex = 0;
+    loadMusic(currentIndex);
     playSongMusic();
-  }
-}
-// --------- Prev Music ----------
-function prevMusic() {
-  if (musicIndex > 0) {
-    musicIndex--;
-    loadMusic(musicIndex);
-    playsong();
-    playSongMusic();
-  } else {
-    musicIndex = allMusic.length - 1;
-    loadMusic(musicIndex);
-    playsong();
-    playSongMusic();
+    playSong();
   }
 }
 nextBtn.onclick = function () {
   if (isRandom) {
     playRandomSong();
-    nextMusic();
+    nextSong();
   } else {
-    nextMusic();
+    nextSong();
   }
 };
 
+// Prev song
+function prevSong() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    loadMusic(currentIndex);
+    playSongMusic();
+    playSong();
+  } else {
+    currentIndex = allMusic.length - 1;
+    loadMusic(currentIndex);
+    playSongMusic();
+    playSong();
+  }
+}
 prevBtn.onclick = function () {
   if (isRandom) {
     playRandomSong();
-    prevMusic();
+    prevSong();
   } else {
-    prevMusic();
+    prevSong();
   }
 };
 
-// -------- Tự chuyển bài ----------
-// songAudio.onended = function () {
-//   if (isRepeat) {
-//     songAudio.play();
-//   } else {
-//     nextBtn.click();
-//   }
-// };
-
-function autoPlaySong() {
-  if (autoplay == 1) {
-    autoplay = 1;
+// Tự động chuyển bài khi kết thúc
+songAudio.addEventListener("ended", () => {
+  if (isRandom) {
+    playRandomSong();
+    nextSong();
   } else {
-    autoplay = 1;
+    nextSong();
   }
-}
+});
 
-function range_slider() {
-  if (songAudio.ended) {
-    playBtn.innerHTML = `<i class="fa-solid fa-play"></i>`;
-    if (autoplay == 1 && isRandom) {
-      playRandomSong();
-      nextMusic();
-      loadMusic(musicIndex);
-      playsong();
-    }
-    if (autoplay == 1) {
-      nextMusic();
-      loadMusic(musicIndex);
-      playsong();
-    }
-  }
-}
 // -------- Random Music --------
 randomBtn.onclick = function (e) {
   isRandom = !isRandom;
   randomBtn.classList.toggle("pink", isRandom);
 };
 
+let playedSongs = [];
 function playRandomSong() {
-  let newMusicIndex;
+  let randomIndex;
+  let randomSong;
+
+  // Lặp lại cho đến khi tìm được bài hát không trùng lặp
   do {
-    newMusicIndex = Math.floor(Math.random() * allMusic.length);
-  } while (newMusicIndex === musicIndex);
-  musicIndex = newMusicIndex;
+    randomIndex = Math.floor(Math.random() * allMusic.length);
+    randomSong = allMusic[randomIndex];
+  } while (playedSongs.includes(randomSong));
+
+  // Thêm bài hát được random vào danh sách các bài đã được phát
+  playedSongs.push(randomSong);
+
+  // Nếu tất cả bài hát đã được phát thì reset lại danh sách
+  if (playedSongs.length == allMusic.length) {
+    playedSongs = [];
+  }
+
+  // Trả về bài hát được random
+  currentIndex = randomIndex;
 }
 
-// --------Repeat Music----------
+// Playback time
+playbackTimeBtn.addEventListener("click", function () {
+  if (!isPlaybackTime) {
+    playbackTimeBtn.classList.add("pink");
+    stopMusic = setTimeout(function () {
+      isPlaybackTime = false;
+      pauseSong();
+    }, stopTime);
+    isPlaybackTime = true;
+  } else {
+    clearTimeout(stopMusic);
+    playbackTimeBtn.classList.remove("pink");
+    isPlaybackTime = false;
+    playSong();
+  }
+});
 
-// -------- Playback time --------
-
-// ------------- Update progress -------
+// progress
 songAudio.addEventListener("timeupdate", (e) => {
   const currentTime = e.target.currentTime;
   const duration = e.target.duration;
@@ -295,68 +352,5 @@ progress.addEventListener("click", (e) => {
   let clickOffsetX = e.offsetX;
   let songDuration = songAudio.duration;
   songAudio.currentTime = (clickOffsetX / progressWidthval) * songDuration;
-  playsong();
+  playSong();
 });
-
-// -------- Reset music ---------
-function reset_music() {
-  progressbar.value = 0;
-}
-
-// -------- Playlist---------
-
-for (let i = 0; i < allMusic.length; i++) {
-  let song = `<div class="song" Musicindex="${i}">
-                <div class="left">
-                  <div
-                    class="img-song"
-                    style="background-image: url('${allMusic[i].img}')"
-                  ></div>
-                  <div class="music-name">
-                    <h3 class="name">${allMusic[i].name}</h3>
-                    <p class="artist">${allMusic[i].artist}</p>
-                  </div>
-                </div>
-                <audio class="${allMusic[i].idMusic}" src="${allMusic[i].src}">
-                </audio>
-                <div id="${allMusic[i].idMusic}" class="audio-duration">
-                  <i class="fas fa-ellipsis-h"></i>
-                </div>
-              </div>`;
-  playlist.insertAdjacentHTML("beforeend", song);
-  let songAudioDuration = document.querySelector(`#${allMusic[i].idMusic}`);
-  let songAudioTag = document.querySelector(`.${allMusic[i].idMusic}`);
-  // -------hiển thị thời gian bài hát------------
-  songAudioTag.addEventListener("loadeddata", () => {
-    let audioDuration = songAudioTag.duration;
-    let totalMusicmin = Math.floor(audioDuration / 60);
-    let totalMusicsec = Math.floor(audioDuration % 60);
-    if (totalMusicsec < 10) {
-      totalMusicsec = `0${totalMusicsec}`;
-    }
-    songAudioDuration.innerText = `${totalMusicmin}:${totalMusicsec}`;
-  });
-}
-
-// -----------------------------------------------
-const allSongMusic = playlist.querySelectorAll(".song ");
-
-function playSongMusic() {
-  for (let j = 0; j < allSongMusic.length; j++) {
-    if (allSongMusic[j].classList.contains("active")) {
-      allSongMusic[j].classList.remove("active");
-    }
-    if (allSongMusic[j].getAttribute("Musicindex") == musicIndex) {
-      allSongMusic[j].classList.add("active");
-    }
-    allSongMusic[j].setAttribute("onclick", "clicked(this)");
-  }
-}
-
-function clicked(index) {
-  let getSongIndex = index.getAttribute("Musicindex");
-  musicIndex = getSongIndex;
-  loadMusic(musicIndex);
-  playsong();
-  playSongMusic();
-}

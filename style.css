@@ -11,6 +11,8 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  -webkit-user-select: none;
+  user-select: none;
 }
 html {
   box-sizing: border-box;
@@ -176,6 +178,7 @@ header h3 {
 }
 
 .song {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -187,6 +190,8 @@ header h3 {
 }
 .song .left {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .song.active {
   background-color: var(--pink);
@@ -200,16 +205,14 @@ header h3 {
   color: #fff;
 }
 .song .img-song {
-  width: 44px;
-  height: 44px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   background-size: cover;
-  margin: 0 25px 0 0;
+  margin: 0 20px 0 0;
 }
 .song .song-title {
   flex: 1;
-  padding: 0 16px;
-  margin-right: 500px;
 }
 .song .name {
   font-size: 18px;
@@ -221,6 +224,7 @@ header h3 {
 }
 .song .audio-duration {
   display: flex;
-  padding: 16px 8px;
+  font-size: 18px;
+  padding: 8px;
   justify-content: flex-end;
 }
