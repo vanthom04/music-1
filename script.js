@@ -540,6 +540,7 @@ const prevBtn = document.querySelector("#btn-prev");
 const nextBtn = document.querySelector("#btn-next");
 const playBtn = document.querySelector("#btn-play");
 const playbackTimeBtn = document.querySelector("#btn-playback-time");
+const playbackTimer = document.querySelector(".playback-timer");
 const songAudio = document.createElement("audio");
 
 let currentIndex = 0;
