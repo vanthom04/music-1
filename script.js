@@ -10,14 +10,14 @@ let allMusic = [
   {
     name: "Chỉ Cần Em Muốn",
     artist: "NP.2 x Hngle",
-    img: "img/music/chi_can_em_muon.jpg",
+    img: "img/music/chi_can_em_muon.jpeg",
     src: "music/chi_can_em_muon.mp3",
     idMusic: "song2",
   },
   {
     name: "Em Đồng Ý Nha",
     artist: "Nguyễn Quang Quý",
-    img: "img/music/em_dong_y_nha.jpg",
+    img: "img/music/em_dong_y_nha.jpeg",
     src: "music/em_dong_y_nha.mp3",
     idMusic: "song3",
   },
@@ -224,140 +224,140 @@ let allMusic = [
     src: "music/thang_dien.mp3",
     idMusic: "song32",
   },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song33",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song34",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song35",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song36",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song37",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song38",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song39",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song40",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song41",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song42",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song43",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song44",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song45",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song46",
-  // },
+  {
+    name: "Anh Đánh Rơi Người Yêu Này",
+    artist: "Amee ft. Andiez",
+    img: "img/music/anh_danh_roi_nguoi_yeu_nay.jpg",
+    src: "music/anh_danh_roi_nguoi_yeu_nay.mp3",
+    idMusic: "song33",
+  },
+  {
+    name: "Như Bến Đợi Đò",
+    artist: "Khánh Ân ft. Hana Cẩm Tiên",
+    img: "img/music/nhu_ben_doi_do.jpg",
+    src: "music/nhu_ben_doi_do.mp3",
+    idMusic: "song34",
+  },
+  {
+    name: "Bắt Cóc Con Tim",
+    artist: "Lou Hoàng",
+    img: "img/music/bat_coc_con_tim.jpg",
+    src: "music/bat_coc_con_tim.mp3",
+    idMusic: "song35",
+  },
+  {
+    name: "Don't Côi",
+    artist: "RPT Orijinn x Ronboogz",
+    img: "img/music/dont_coi.jpg",
+    src: "music/dont_coi.mp3",
+    idMusic: "song36",
+  },
+  {
+    name: "Yêu Không Cần Hứa",
+    artist: "Vương Anh Tú",
+    img: "img/music/yeu_khong_can_hua.jpg",
+    src: "music/yeu_khong_can_hua.mp3",
+    idMusic: "song37",
+  },
+  {
+    name: "Giá Như Anh Lặng Im",
+    artist: "OnlyC ft. Lou Hoàng ft. Quang Hùng",
+    img: "img/music/gia_nhu_anh_lang_im.jpg",
+    src: "music/gia_nhu_anh_lang_im.mp3",
+    idMusic: "song38",
+  },
+  {
+    name: "IU Anh Thế Thôi",
+    artist: "Sean x Muội x Angfang",
+    img: "img/music/iu_anh_the_thoi.jpeg",
+    src: "music/iu_anh_the_thoi.mp3",
+    idMusic: "song39",
+  },
+  {
+    name: "Có Đâu Ai Ngờ",
+    artist: "Cầm",
+    img: "img/music/co_dau_ai_ngo.jpeg",
+    src: "music/co_dau_ai_ngo.mp3",
+    idMusic: "song40",
+  },
+  {
+    name: "Yêu Em Hơn Mỗi Ngày",
+    artist: "Andiez",
+    img: "img/music/yeu_em_hon_moi_ngay.jpg",
+    src: "music/yeu_em_hon_moi_ngay.mp3",
+    idMusic: "song41",
+  },
+  {
+    name: "Lắng Nghe Nước Mắt",
+    artist: "Mr.Siro",
+    img: "img/music/lang_nghe_nuoc_mat.jpg",
+    src: "music/lang_nghe_nuoc_mat.mp3",
+    idMusic: "song42",
+  },
+  {
+    name: "Nỗi Đau Mình Anh",
+    artist: "Châu Khải Phong",
+    img: "img/music/noi_dau_minh_anh.jpg",
+    src: "music/noi_dau_minh_anh.mp3",
+    idMusic: "song43",
+  },
+  {
+    name: "Em Là Nhất",
+    artist: "Kis x Hoàng KayLee x Yahy",
+    img: "img/music/em_la_nhat.jpg",
+    src: "music/em_la_nhat.mp3",
+    idMusic: "song44",
+  },
+  {
+    name: "Ngày Đầu Tiên",
+    artist: "Đức Phúc",
+    img: "img/music/ngay_dau_tien.jpg",
+    src: "music/ngay_dau_tien.mp3",
+    idMusic: "song45",
+  },
+  {
+    name: "Sóng Gió",
+    artist: "Jack ft. K-ICM",
+    img: "img/music/song_gio.jpg",
+    src: "music/song_gio.mp3",
+    idMusic: "song46",
+  },
 
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song47",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song48",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song49",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song50",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song51",
-  // },
+  {
+    name: "Bạc Phận",
+    artist: "Jack ft. K-ICM",
+    img: "img/music/bac_phan.jpg",
+    src: "music/bac_phan.mp3",
+    idMusic: "song47",
+  },
+  {
+    name: "Pháo Hồng",
+    artist: "Đặt Long Vinh",
+    img: "img/music/phao_hong.jpg",
+    src: "music/phao_hong.mp3",
+    idMusic: "song48",
+  },
+  {
+    name: "Ép Duyên",
+    artist: "Long Nón Lá",
+    img: "img/music/ep_duyen.jpg",
+    src: "music/ep_duyen.mp3",
+    idMusic: "song49",
+  },
+  {
+    name: "Dạ Vũ",
+    artist: "Tăng Duy Tân x Phong Max",
+    img: "img/music/da_vu.jpg",
+    src: "music/da_vu.mp3",
+    idMusic: "song50",
+  },
+  {
+    name: "Ngây Thơ",
+    artist: "Tăng Duy Tân x Phong Max",
+    img: "img/music/ngay_tho.jpg",
+    src: "music/ngay_tho.mp3",
+    idMusic: "song51",
+  },
   // {
   //   name: "",
   //   artist: "",
@@ -610,6 +610,7 @@ function clicked(index) {
   playSong();
   playSongMusic();
 }
+
 function scrollToActiveSong() {
   setTimeout(() => {
     const activeSong = document.querySelector(".song.active");
@@ -674,61 +675,43 @@ function pauseSong() {
 
 // Next song
 function nextSong() {
-  if (currentIndex < allMusic.length - 1) {
+  if (isRandom) {
+    currentIndex = randomSong();
+  } else if (currentIndex < allMusic.length - 1) {
     currentIndex++;
-    loadMusic(currentIndex);
-    playSongMusic();
-    playSong();
   } else {
     currentIndex = 0;
-    loadMusic(currentIndex);
-    playSongMusic();
-    playSong();
   }
+  loadMusic(currentIndex);
+  playSongMusic();
+  playSong();
+  scrollToActiveSong();
 }
 nextBtn.onclick = function () {
-  if (isRandom) {
-    playRandomSong();
-    nextSong();
-  } else {
-    nextSong();
-  }
-  scrollToActiveSong();
+  nextSong();
 };
 
 // Prev song
 function prevSong() {
-  if (currentIndex > 0) {
+  if (isRandom) {
+    currentIndex = randomSong();
+  } else if (currentIndex > 0) {
     currentIndex--;
-    loadMusic(currentIndex);
-    playSongMusic();
-    playSong();
   } else {
     currentIndex = allMusic.length - 1;
-    loadMusic(currentIndex);
-    playSongMusic();
-    playSong();
   }
+  loadMusic(currentIndex);
+  playSongMusic();
+  playSong();
+  scrollToActiveSong();
 }
 prevBtn.onclick = function () {
-  if (isRandom) {
-    playRandomSong();
-    prevSong();
-  } else {
-    prevSong();
-  }
-  scrollToActiveSong();
+  prevSong();
 };
 
 // Tự động chuyển bài khi kết thúc
 songAudio.addEventListener("ended", () => {
-  if (isRandom) {
-    playRandomSong();
-    nextSong();
-  } else {
-    nextSong();
-  }
-  scrollToActiveSong();
+  nextSong();
 });
 
 // -------- Random Music --------
@@ -738,14 +721,10 @@ randomBtn.onclick = function (e) {
 };
 
 let playedSongs = [];
-function playRandomSong() {
-  let randomIndex;
-  let randomSong;
-
-  // Lặp lại cho đến khi tìm được bài hát không trùng lặp
+function randomSong() {
   do {
-    randomIndex = Math.floor(Math.random() * allMusic.length);
-    randomSong = allMusic[randomIndex];
+    var randomIndex = Math.floor(Math.random() * allMusic.length);
+    var randomSong = allMusic[randomIndex];
   } while (playedSongs.includes(randomSong));
 
   // Thêm bài hát được random vào danh sách các bài đã được phát
@@ -755,9 +734,7 @@ function playRandomSong() {
   if (playedSongs.length == allMusic.length) {
     playedSongs = [];
   }
-
-  // Trả về bài hát được random
-  currentIndex = randomIndex;
+  return randomIndex;
 }
 
 // Playback time
@@ -765,6 +742,7 @@ playbackTimeBtn.addEventListener("click", function () {
   if (!isPlaybackTime) {
     playbackTimeBtn.classList.add("pink");
     stopMusic = setTimeout(function () {
+      playbackTimeBtn.classList.remove("pink");
       isPlaybackTime = false;
       pauseSong();
     }, stopTime);
