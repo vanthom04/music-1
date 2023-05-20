@@ -740,20 +740,51 @@ function randomSong() {
 // Playback time
 playbackTimeBtn.addEventListener("click", function () {
   if (!isPlaybackTime) {
+    let stopTime = 3600000;
     playbackTimeBtn.classList.add("pink");
+    playbackTimer.style.display = "block";
+    let minutes = Math.floor(stopTime / 1000 / 60);
+    let seconds = Math.floor((stopTime / 1000) % 60);
+    countdown = setInterval(function () {
+      if (seconds == 0) {
+        seconds = 59;
+        minutes--;
+      }
+      seconds--;
+      if (seconds < 10) {
+        seconds = `0${seconds}`;
+      }
+      playbackTimer.innerText = `${minutes}:${seconds}`;
+    }, 1000);
     stopMusic = setTimeout(function () {
       playbackTimeBtn.classList.remove("pink");
+      playbackTimer.style.display = "none";
       isPlaybackTime = false;
       pauseSong();
     }, stopTime);
     isPlaybackTime = true;
   } else {
     clearTimeout(stopMusic);
+    clearInterval(countdown);
     playbackTimeBtn.classList.remove("pink");
+    playbackTimer.style.display = "none";
     isPlaybackTime = false;
-    playSong();
   }
 });
+
+// Kiểm tra xem trang web được chạy trên thiết bị di động hay không
+function isMobileDevice() {
+  return (
+    typeof window.orientation !== "undefined" ||
+    navigator.userAgent.indexOf("IEMobile") !== -1
+  );
+}
+
+// Sử dụng hàm kiểm tra
+if (isMobileDevice()) {
+  playbackTimer.style.right = 38 + "px";
+  playbackTimer.style.bottom = 10 + "px";
+}
 
 // progress
 songAudio.addEventListener("timeupdate", (e) => {

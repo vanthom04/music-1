@@ -117,6 +117,7 @@ header h3 {
 
 /* Controls */
 .controls {
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
@@ -157,6 +158,14 @@ header h3 {
 }
 .pink {
   color: var(--pink);
+}
+.playback-timer {
+  display: none;
+  position: absolute;
+  color: red;
+  font-size: 16px;
+  right: 40px;
+  bottom: 30px;
 }
 
 /* Playlist */
