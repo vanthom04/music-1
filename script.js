@@ -549,7 +549,7 @@ let isRandom = false;
 let isRepeat = false;
 let isPlaybackTime = false;
 let stopMusic = null;
-let stopTime = 3600000;
+let countdown = null;
 
 window.addEventListener("load", () => {
   loadMusic(currentIndex);
@@ -664,6 +664,7 @@ function playSong() {
   songAudio.play();
   cdThumbAnimation.play();
   isPlaying = true;
+  playBtn.title = "Pause";
   playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
 }
 
@@ -671,6 +672,7 @@ function pauseSong() {
   songAudio.pause();
   cdThumbAnimation.pause();
   isPlaying = false;
+  playBtn.title = "Play";
   playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
 }
 
@@ -739,19 +741,24 @@ function randomSong() {
 }
 
 // Playback time
+let stopTime = 3600000;
 playbackTimeBtn.addEventListener("click", function () {
   if (!isPlaybackTime) {
-    let stopTime = 3600000;
     playbackTimeBtn.classList.add("pink");
     playbackTimer.style.display = "block";
     let minutes = Math.floor(stopTime / 1000 / 60);
     let seconds = Math.floor((stopTime / 1000) % 60);
+    if (seconds < 10) {
+      seconds = `0${seconds}`;
+    }
+    playbackTimer.innerText = `${minutes}:${seconds}`;
     countdown = setInterval(function () {
       if (seconds == 0) {
         seconds = 59;
         minutes--;
+      } else {
+        seconds--;
       }
-      seconds--;
       if (seconds < 10) {
         seconds = `0${seconds}`;
       }
