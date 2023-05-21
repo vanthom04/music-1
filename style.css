@@ -132,7 +132,7 @@ header h3 {
 }
 .controls button i {
   font-size: 24px;
-  padding: 5px 10px;
+  padding: 5px;
   transition: all 0.5s;
   margin: 0 20px 0 20px;
 }
