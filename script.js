@@ -741,13 +741,14 @@ function randomSong() {
 }
 
 // Playback time
-let stopTime = 3600000;
+let stopTime = 3600;
 playbackTimeBtn.addEventListener("click", function () {
   if (!isPlaybackTime) {
     playbackTimeBtn.classList.add("pink");
     playbackTimer.style.display = "block";
-    let minutes = Math.floor(stopTime / 1000 / 60);
-    let seconds = Math.floor((stopTime / 1000) % 60);
+    // CountDown
+    let minutes = Math.floor(stopTime / 60);
+    let seconds = Math.floor(stopTime % 60);
     if (seconds < 10) {
       seconds = `0${seconds}`;
     }
@@ -764,12 +765,14 @@ playbackTimeBtn.addEventListener("click", function () {
       }
       playbackTimer.innerText = `${minutes}:${seconds}`;
     }, 1000);
+    // Stop Music
     stopMusic = setTimeout(function () {
       playbackTimeBtn.classList.remove("pink");
       playbackTimer.style.display = "none";
+      clearInterval(countdown);
       isPlaybackTime = false;
       pauseSong();
-    }, stopTime);
+    }, stopTime * 1000);
     isPlaybackTime = true;
   } else {
     clearTimeout(stopMusic);
@@ -779,14 +782,6 @@ playbackTimeBtn.addEventListener("click", function () {
     isPlaybackTime = false;
   }
 });
-
-// Kiểm tra xem trang web được chạy trên thiết bị di động hay không
-function isMobileDevice() {
-  return (
-    typeof window.orientation !== "undefined" ||
-    navigator.userAgent.indexOf("IEMobile") !== -1
-  );
-}
 
 // progress
 songAudio.addEventListener("timeupdate", (e) => {
