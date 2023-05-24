@@ -358,132 +358,133 @@ let allMusic = [
     src: "music/ngay_tho.mp3",
     idMusic: "song51",
   },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song52",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song53",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song54",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song55",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song56",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song57",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song58",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song59",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song60",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song61",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song62",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song63",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song64",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song65",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song66",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song67",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song68",
-  // },
-  // {
-  //   name: "",
-  //   artist: "",
-  //   img: "img/music/.jpg",
-  //   src: "music/.mp3",
-  //   idMusic: "song69",
-  // },
+  {
+    name: "Thích Thích",
+    artist: "Phương Ly",
+    img: "img/music/thich_thich.jpg",
+    src: "music/thich_thich.mp3",
+    idMusic: "song52",
+  },
+  {
+    name: "Phận Duyên Lỡ Làng",
+    artist: "Phát Huy T4 x Truzg",
+    img: "img/music/phan_duyen_lo_lang.jpg",
+    src: "music/phan_duyen_lo_lang.mp3",
+    idMusic: "song53",
+  },
+  {
+    name: "Đường Quyền Tình Yêu",
+    artist: "DatKaa x QT Beatz",
+    img: "img/music/duong_quyen_tinh_yeu.jpg",
+    src: "music/duong_quyen_tinh_yeu.mp3",
+    idMusic: "song54",
+  },
+  {
+    name: "Anh Yêu Vội Thế",
+    artist: "LaLa Trần",
+    img: "img/music/anh_yeu_voi_the.jpg",
+    src: "music/anh_yeu_voi_the.mp3",
+    idMusic: "song55",
+  },
+  {
+    name: "Anh Thanh Niên",
+    artist: "HuyR",
+    img: "img/music/anh_thanh_nien.jpg",
+    src: "music/anh_thanh_nien.mp3",
+    idMusic: "song56",
+  },
+  {
+    name: "Hồng Nhan",
+    artist: "Jack",
+    img: "img/music/hong_nhan.jpg",
+    src: "music/hong_nhan.mp3",
+    idMusic: "song57",
+  },
+  {
+    name: "Bên Trên Tầng Lầu",
+    artist: "Tăng Duy Tân",
+    img: "img/music/ben_tren_tang_lau.jpg",
+    src: "music/ben_tren_tang_lau.mp3",
+    idMusic: "song58",
+  },
+  {
+    name: "Câu Hứa Chưa Vẹn Tròn",
+    artist: "Phát Huy T4 x Hoàng Green",
+    img: "img/music/cau_hua_chua_ven_tron.jpg",
+    src: "music/cau_hua_chua_ven_tron.mp3",
+    idMusic: "song59",
+  },
+  {
+    name: "Anh Có Muốn Đưa Em Về Không",
+    artist: "Ngô Lan Hương",
+    img: "img/music/anh_co_muon_dua_em_ve_khong.jpg",
+    src: "music/anh_co_muon_dua_em_ve_khong.mp3",
+    idMusic: "song60",
+  },
+  {
+    name: "Cô Gái Vàng",
+    artist: "HuyR x Tùng Viu x Quang Đăng",
+    img: "img/music/co_gai_vang.jpg",
+    src: "music/co_gai_vang.mp3",
+    idMusic: "song61",
+  },
+  {
+    name: "Cố Giang Tình",
+    artist: "Phát Hồ x JokeS Bii ft. DinhLong",
+    img: "img/music/co_giang_tinh.jpg",
+    src: "music/co_giang_tinh.mp3",
+    idMusic: "song62",
+  },
+  {
+    name: "Không Yêu Xin Đừng Nói",
+    artist: "Umie",
+    img: "img/music/khong_yeu_xin_dung_noi.jpeg",
+    src: "music/khong_yeu_xin_dung_noi.mp3",
+    idMusic: "song63",
+  },
+  {
+    name: "Xin Má Rước Dâu",
+    artist: "Diệu Kiên",
+    img: "img/music/xin_ma_ruoc_dau.jpg",
+    src: "music/xin_ma_ruoc_dau.mp3",
+    idMusic: "song64",
+  },
+
+  {
+    name: "Thiệp Hồng Người Dưng",
+    artist: "Phát Hồ x JokeS Bii x Sinike ft. DinhLong",
+    img: "img/music/thiep_hong_nguoi_dung.jpg",
+    src: "music/thiep_hong_nguoi_dung.mp3",
+    idMusic: "song65",
+  },
+  {
+    name: "Chỉ Muốn Bên Em Thật Gần",
+    artist: "Y Ling x Nguyễn Minh Phúc",
+    img: "img/music/chi_muon_ben_em_that_gan.jpg",
+    src: "music/chi_muon_ben_em_that_gan.mp3",
+    idMusic: "song66",
+  },
+  {
+    name: "Yêu Rồi",
+    artist: "Cris Phan x Mai Quỳnh Anh",
+    img: "img/music/yeu_roi.jpg",
+    src: "music/yeu_roi.mp3",
+    idMusic: "song67",
+  },
+  {
+    name: "Họa Mây",
+    artist: "X2X Band ft. DinhLong",
+    img: "img/music/hoa_may.jpg",
+    src: "music/hoa_may.mp3",
+    idMusic: "song68",
+  },
+  {
+    name: "Cô Gái M52",
+    artist: "HuyR x Tùng Viu",
+    img: "img/music/co_gai_m52.jpg",
+    src: "music/co_gai_m52.mp3",
+    idMusic: "song69",
+  },
   // {
   //   name: "",
   //   artist: "",
@@ -729,6 +730,7 @@ myControlBtn.addEventListener("click", function () {
     !myControls.classList.contains("pink")
   ) {
     isRandom = !isRandom;
+    myControlBtn.title = "Repeat";
     myControls.classList.add("pink");
   } else if (
     myControls.classList.contains("fa-shuffle") &&
@@ -736,6 +738,7 @@ myControlBtn.addEventListener("click", function () {
   ) {
     isRandom = !isRandom;
     isRepeat = !isRepeat;
+    myControlBtn.title = "Random";
     myControls.classList.remove("fa-shuffle");
     myControls.classList.add("fa-repeat");
   } else {
