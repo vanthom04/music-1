@@ -542,6 +542,7 @@ const playBtn = document.querySelector("#btn-play");
 const playbackTimeBtn = document.querySelector("#btn-playback-time");
 const playbackTimer = document.querySelector(".playback-timer");
 const songAudio = document.createElement("audio");
+//const downloadSong = document.querySelector("#download-song a");
 
 let currentIndex = 0;
 let isPlaying = false;
@@ -631,6 +632,9 @@ function loadMusic(index) {
   cdThumb.style.backgroundImage = `url(${allMusic[index].img})`;
   songAudio.src = allMusic[index].src;
   songAudio.load();
+  // Download music
+  // downloadSong.download = `${allMusic[index].name} - ${allMusic[index].artist}`;
+  // downloadSong.href = `${allMusic[index].src}`;
 }
 loadMusic(currentIndex);
 
@@ -742,10 +746,10 @@ function randomSong() {
 
 // Playback time
 let stopTime = 3600;
-playbackTimeBtn.addEventListener("click", function () {
+function playbackTime() {
   if (!isPlaybackTime) {
     playbackTimeBtn.classList.add("pink");
-    playbackTimer.style.display = "block";
+    playbackTimer.classList.add("show");
     // CountDown
     let minutes = Math.floor(stopTime / 60);
     let seconds = Math.floor(stopTime % 60);
@@ -768,7 +772,7 @@ playbackTimeBtn.addEventListener("click", function () {
     // Stop Music
     stopMusic = setTimeout(function () {
       playbackTimeBtn.classList.remove("pink");
-      playbackTimer.style.display = "none";
+      playbackTimer.classList.remove("show");
       clearInterval(countdown);
       isPlaybackTime = false;
       pauseSong();
@@ -778,11 +782,14 @@ playbackTimeBtn.addEventListener("click", function () {
     clearTimeout(stopMusic);
     clearInterval(countdown);
     playbackTimeBtn.classList.remove("pink");
-    playbackTimer.style.display = "none";
+    playbackTimer.classList.remove("show");
     isPlaybackTime = false;
   }
-});
+}
 
+playbackTimeBtn.addEventListener("click", function () {
+  playbackTime();
+});
 // progress
 songAudio.addEventListener("timeupdate", (e) => {
   const currentTime = e.target.currentTime;
