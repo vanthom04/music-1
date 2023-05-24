@@ -535,14 +535,14 @@ const musicName = document.querySelector("header h2");
 const musicArtist = document.querySelector("header h3");
 const progress = document.querySelector(".progress");
 const progressbar = document.querySelector(".progress-bar");
-const randomBtn = document.querySelector("#btn-random");
+const myControlBtn = document.querySelector("#btn-my-controls");
+const myControls = document.querySelector("#btn-my-controls #icon");
 const prevBtn = document.querySelector("#btn-prev");
 const nextBtn = document.querySelector("#btn-next");
 const playBtn = document.querySelector("#btn-play");
 const playbackTimeBtn = document.querySelector("#btn-playback-time");
 const playbackTimer = document.querySelector(".playback-timer");
 const songAudio = document.createElement("audio");
-//const downloadSong = document.querySelector("#download-song a");
 
 let currentIndex = 0;
 let isPlaying = false;
@@ -557,7 +557,7 @@ window.addEventListener("load", () => {
   playSongMusic();
 });
 
-// Xử lý khi click vào playlist
+// Playlist
 for (let i = 0; i < allMusic.length; i++) {
   let song = `<div class="song" musicIndex="${i}">
                 <div class="left">
@@ -632,9 +632,6 @@ function loadMusic(index) {
   cdThumb.style.backgroundImage = `url(${allMusic[index].img})`;
   songAudio.src = allMusic[index].src;
   songAudio.load();
-  // Download music
-  // downloadSong.download = `${allMusic[index].name} - ${allMusic[index].artist}`;
-  // downloadSong.href = `${allMusic[index].src}`;
 }
 loadMusic(currentIndex);
 
@@ -718,20 +715,45 @@ prevBtn.onclick = function () {
 
 // Tự động chuyển bài khi kết thúc
 songAudio.addEventListener("ended", () => {
-  nextSong();
+  if (isRepeat) {
+    songAudio.play();
+  } else {
+    nextSong();
+  }
 });
 
-// -------- Random Music --------
-randomBtn.onclick = function (e) {
-  isRandom = !isRandom;
-  randomBtn.classList.toggle("pink", isRandom);
-};
+// Random & Repeat
+myControlBtn.addEventListener("click", function () {
+  if (
+    myControls.classList.contains("fa-shuffle") &&
+    !myControls.classList.contains("pink")
+  ) {
+    isRandom = !isRandom;
+    myControls.classList.add("pink");
+  } else if (
+    myControls.classList.contains("fa-shuffle") &&
+    myControls.classList.contains("pink")
+  ) {
+    isRandom = !isRandom;
+    isRepeat = !isRepeat;
+    myControls.classList.remove("fa-shuffle");
+    myControls.classList.add("fa-repeat");
+  } else {
+    isRepeat = !isRepeat;
+    myControls.classList.add("fa-shuffle");
+    myControls.classList.remove("fa-repeat");
+    myControls.classList.remove("pink");
+  }
+});
 
+// Random Song
 let playedSongs = [];
 function randomSong() {
+  let randomIndex;
+  let randomSong;
   do {
-    var randomIndex = Math.floor(Math.random() * allMusic.length);
-    var randomSong = allMusic[randomIndex];
+    randomIndex = Math.floor(Math.random() * allMusic.length);
+    randomSong = allMusic[randomIndex];
   } while (playedSongs.includes(randomSong));
 
   // Thêm bài hát được random vào danh sách các bài đã được phát
@@ -743,6 +765,26 @@ function randomSong() {
   }
   return randomIndex;
 }
+
+// Lấy tham chiếu đến phần tử bảng chọn
+// let dropdownMenu = document.querySelector(".dropdown-menu");
+// let dropdownOptions = document.querySelectorAll(".dropdown-menu li");
+
+// playbackTimeBtn.addEventListener("click", function () {
+//   dropdownMenu.classList.toggle("show");
+// });
+
+// dropdownOptions.forEach(function (option) {
+//   option.addEventListener("click", function () {
+//     let selectedValue = option.getAttribute("data-value");
+//     console.log("Đã chọn: ", selectedValue);
+//     dropdownOptions.addEventListener("click", function () {
+//       dropdownMenu.classList.remove("show");
+//       playbackTime(selectedValue);
+//     });
+//     // Gọi function hoặc thực hiện các thao tác khác ở đây
+//   });
+// });
 
 // Playback time
 let stopTime = 3600;
