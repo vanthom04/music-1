@@ -898,6 +898,10 @@ songAudio.addEventListener("ended", () => {
   }
 });
 
+document.addEventListener("click", () => {
+  songAudio.play();
+});
+
 // Random & Repeat
 myControlBtn.addEventListener("click", function () {
   if (
