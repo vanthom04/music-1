@@ -1,5 +1,5 @@
 // All Music
-let allMusic = [
+const allMusic = [
   {
     name: "Bật Tình Yêu Lên",
     artist: "Tăng Duy Tân x Hòa Minzy",
@@ -43,10 +43,10 @@ let allMusic = [
     idMusic: "song6",
   },
   {
-    name: "Hai Mươi Hai",
-    artist: "Amee x Hứa Kim Tuyền",
-    img: "./img/music/22.jpg",
-    src: "./music/22.mp3",
+    name: "Xem Như Tôi Chưa Từng Có Được Em",
+    artist: "Lãnh Cung ft Cường",
+    img: "./img/music/xem_nhu_toi_chua_tung_co_duoc_em.jpg",
+    src: "./music/xem_nhu_toi_chua_tung_co_duoc_em.mp3",
     idMusic: "song7",
   },
   {
@@ -415,10 +415,10 @@ let allMusic = [
     idMusic: "song59",
   },
   {
-    name: "Anh Có Muốn Đưa Em Về Không",
-    artist: "Ngô Lan Hương",
-    img: "./img/music/anh_co_muon_dua_em_ve_khong.jpeg",
-    src: "./music/anh_co_muon_dua_em_ve_khong.mp3",
+    name: "Mãi Chẳng Thuộc Về Nhau",
+    artist: "Bozitt",
+    img: "./img/music/mai_chang_thuoc_ve_nhau.jpg",
+    src: "./music/mai_chang_thuoc_ve_nhau.mp3",
     idMusic: "song60",
   },
   {
@@ -521,17 +521,17 @@ let allMusic = [
     idMusic: "song74",
   },
   {
-    name: "Tấm Lòng Son",
-    artist: "H-Kray",
-    img: "./img/music/tam_long_son.jpg",
-    src: "./music/tam_long_son.mp3",
+    name: "Nợ Ai Đó Lời Xin Lỗi",
+    artist: "Bozitt x Freak D",
+    img: "./img/music/no_ai_do_loi_xin_loi.jpg",
+    src: "./music/no_ai_do_loi_xin_loi.mp3",
     idMusic: "song75",
   },
   {
-    name: "Ý Em Sao",
-    artist: "Kay Trần",
-    img: "./img/music/y_em_sao.jpeg",
-    src: "./music/y_em_sao.mp3",
+    name: "Breathe",
+    artist: "Mackenzie Ziegler",
+    img: "./img/music/breathe.jpg",
+    src: "./music/breathe.mp3",
     idMusic: "song76",
   },
   {
@@ -626,10 +626,10 @@ let allMusic = [
     idMusic: "song89",
   },
   {
-    name: "Thay Tôi Yêu Cô Ấy",
-    artist: "Thanh Hưng",
-    img: "./img/music/thay_toi_yeu_co_ay.jpg",
-    src: "./music/thay_toi_yeu_co_ay.mp3",
+    name: "Nothin' On Me",
+    artist: "Leah Marie Perez",
+    img: "./img/music/nothin_on_me.png",
+    src: "./music/nothin_on_me.mp3",
     idMusic: "song90",
   },
   {
@@ -640,17 +640,17 @@ let allMusic = [
     idMusic: "song91",
   },
   {
-    name: "Em Là Nhất Miền Tây",
-    artist: "Võ Lê Mi x Jin Tuấn Nam",
-    img: "./img/music/em_la_nhat_mien_tay.jpg",
-    src: "./music/em_la_nhat_mien_tay.mp3",
+    name: "Day Dứt Nỗi Đau",
+    artist: "Mr. Siro",
+    img: "./img/music/day_dut_noi_dau.webp",
+    src: "./music/day_dut_noi_dau.mp3",
     idMusic: "song92",
   },
   {
-    name: "Chuyện Đôi Ta",
-    artist: "Da LAB ft. Muộii",
-    img: "./img/music/chuyen_doi_ta.jpg",
-    src: "./music/chuyen_doi_ta.mp3",
+    name: "11 giờ 11 phút",
+    artist: "MiiNa x RIN9 x DREAMeR",
+    img: "./img/music/11h11p.jpg",
+    src: "./music/11h11p.mp3",
     idMusic: "song93",
   },
   {
@@ -805,6 +805,7 @@ function scrollToActiveSong() {
 function loadMusic(index) {
   musicName.innerText = allMusic[index].name;
   musicArtist.innerText = allMusic[index].artist;
+  document.title = `${musicName.innerText} - ${musicArtist.innerText}`;
   cdThumb.style.backgroundImage = `url(${allMusic[index].img})`;
   songAudio.src = allMusic[index].src;
   songAudio.load();
